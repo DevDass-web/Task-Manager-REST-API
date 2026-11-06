@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="<%= pageDescription %>">
+  <title><%= pageTitle %></title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <%- include("partials/header") %>
+
+  <main class="container">
+    <section class="welcome">
+      <div>
+        <p class="eyebrow">YOUR WORKSPACE</p>
+        <h1>Make room for <span>great work.</span></h1>
+        <p class="subtitle"><%= pageDescription %></p>
+      </div>
+      <div class="date-chip" id="todayLabel"></div>
+    </section>
+
+    <section class="stats-grid" aria-label="Task summary">
+      <article class="stat-card"><span class="stat-label">All tasks</span><strong id="totalCount">0</strong><span class="stat-note">Everything on your list</span></article>
+      <article class="stat-card"><span class="stat-label">Pending</span><strong id="pendingCount">0</strong><span class="stat-note">Waiting to get started</span></article>
+      <article class="stat-card"><span class="stat-label">In progress</span><strong id="progressCount">0</strong><span class="stat-note">Currently underway</span></article>
+      <article class="stat-card"><span class="stat-label">Completed</span><strong id="completedCount">0</strong><span class="stat-note">Work you've finished</span></article>
+    </section>
+
+    <section class="workspace">
+      <div class="section-heading">
+        <div><p class="eyebrow">STAY ORGANIZED</p><h2>Your tasks</h2></div>
+        <button class="button button-primary" id="newTaskButton" type="button">＋ New task</button>
+      </div>
+
+      <form class="task-form hidden" id="taskForm">
+        <div class="form-heading"><h3 id="formTitle">Create a task</h3><button class="icon-button" id="closeFormButton" type="button" aria-label="Close form">×</button></div>
+        <input type="hidden" id="taskId">
+        <div class="form-grid">
+          <label class="field field-wide">Task title<input id="title" name="title" maxlength="150" placeholder="e.g. Finish portfolio homepage" required></label>
+          <label class="field field-wide">Description<textarea id="description" name="description" rows="3" placeholder="Add a few details (optional)"></textarea></label>
+          <label class="field">Status<select id="status" name="status"><option value="pending">Pending</option><option value="in_progress">In progress</option><option value="completed">Completed</option></select></label>
+          <label class="field">Priority<select id="priority" name="priority"><option value="low">Low</option><option value="medium" selected>Medium</option><option value="high">High</option></select></label>
+          <label class="field">Due date<input id="due_date" name="due_date" type="date"></label>
+        </div>
+        <div class="form-actions"><button class="button button-ghost" id="cancelButton" type="button">Cancel</button><button class="button button-primary" type="submit" id="saveButton">Save task</button></div>
+      </form>
+
+      <div class="toolbar">
+        <label class="search-box"><span aria-hidden="true">⌕</span><input id="searchInput" type="search" placeholder="Search your tasks..." aria-label="Search tasks"></label>
+        <select id="statusFilter" aria-label="Filter by status"><option value="">All statuses</option><option value="pending">Pending</option><option value="in_progress">In progress</option><option value="completed">Completed</option></select>
+        <select id="priorityFilter" aria-label="Filter by priority"><option value="">All priorities</option><option value="low">Low priority</option><option value="medium">Medium priority</option><option value="high">High priority</option></select>
+      </div>
+
+      <div id="message" class="message hidden" role="status"></div>
+      <div id="taskList" class="task-list" aria-live="polite"><div class="loading">Loading your tasks...</div></div>
+    </section>
+  </main>
+
+  <%- include("partials/footer") %>
+  <script src="/js/app.js" defer></script>
+</body>
+</html>
