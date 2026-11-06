@@ -48,6 +48,10 @@ The API runs at `http://localhost:5000` by default.
 | DB_PASSWORD | MySQL password | empty |
 | DB_NAME | Database name | task_manager |
 
+## EJS web interface
+
+The project also includes an EJS-powered task dashboard at `http://localhost:5000/`. The dashboard uses the REST API to list, create, update, filter, search, and delete tasks. EJS templates are stored in `views/`, with CSS and browser JavaScript in `public/`.
+
 ## API endpoints
 
 Base URL: `/api`
